@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('writing'))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  return paginate(posts, { pageSize: 8 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const dateFmt = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' });
+---
+
+<BaseLayout
+  title={page.currentPage > 1 ? `Writing (page ${page.currentPage})` : 'Writing'}
+  description="Practical writing on LLM engineering, evals, retrieval, data quality for AI, and deployment patterns."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-24 pb-12 sm:pt-32">
+    <p class="text-sm font-medium tracking-widest text-accent uppercase">Writing</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+      Practical notes from the field
+    </h1>
+    <p class="mt-6 text-lg text-muted">
+      LLM engineering, evals, retrieval, and data quality for AI - written the
+      way I would explain it to a team mid-build. Also available via
+      <a href="/rss.xml" class="text-accent hover:underline">RSS</a>.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 pb-20">
+    <div class="space-y-10">
+      {
+        page.data.map((post) => (
+          <a href={`/writing/${post.id}/`} class="group block">
+            <div class="flex flex-wrap items-center gap-3 text-sm text-muted">
+              <span>{dateFmt.format(post.data.publishDate)}</span>
+              {post.data.tags.length > 0 && (
+                <>
+                  <span class="h-1 w-1 rounded-full bg-line" aria-hidden="true" />
+                  <span>{post.data.tags.join(', ')}</span>
+                </>
+              )}
+            </div>
+            <h2 class="mt-2 text-2xl font-semibold tracking-tight text-fg group-hover:text-accent-strong">
+              {post.data.title}
+            </h2>
+            <p class="mt-2 text-muted">{post.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+
+    {
+      page.url.prev || page.url.next ? (
+        <nav class="mt-14 flex justify-between border-t border-line/70 pt-6 text-sm" aria-label="Pagination">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="text-muted hover:text-fg">&larr; Newer</a>
+          ) : (
+            <span />
+          )}
+          {page.url.next ? (
+            <a href={page.url.next} class="text-muted hover:text-fg">Older &rarr;</a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      ) : null
+    }
+  </section>
+
+  <CTASection
+    title="Want to argue with me about this?"
+    body="If a post above is wrong about something, or you are facing the problem it describes, I would genuinely like to hear about it."
+  />
+</BaseLayout>

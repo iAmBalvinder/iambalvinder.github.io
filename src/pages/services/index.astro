@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import { site } from '../../data/site';
+
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Services"
+  description="LLM and AI consulting engagements: architecture reviews, RAG and eval pipelines, data platform enablement, and strategy roadmaps."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-24 pb-12 sm:pt-32">
+    <p class="text-sm font-medium tracking-widest text-accent uppercase">Services</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+      Engagements that fit real teams
+    </h1>
+    <p class="mt-6 text-lg text-muted">
+      Four ways to work together, from a two-week review to a multi-month build.
+      Every engagement ends with your team owning the system, not depending on me.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 pb-20">
+    <div class="space-y-6">
+      {
+        services.map((service) => (
+          <a
+            href={`/services/${service.id}/`}
+            class="group block rounded-2xl border border-line bg-surface p-8 transition-colors hover:border-accent/40"
+          >
+            <div class="flex flex-wrap items-center gap-3">
+              <h2 class="text-2xl font-semibold tracking-tight text-fg">{service.data.title}</h2>
+              {service.data.timeline && (
+                <span class="rounded-full border border-line px-3 py-1 text-xs text-muted">
+                  {service.data.timeline}
+                </span>
+              )}
+            </div>
+            <p class="mt-3 max-w-2xl text-muted">{service.data.description}</p>
+            <p class="mt-4 text-sm font-medium text-accent opacity-80 transition-opacity group-hover:opacity-100">
+              View details &rarr;
+            </p>
+          </a>
+        ))
+      }
+    </div>
+    <p class="mt-10 text-sm text-muted">
+      Something else in mind?
+      <a href={`mailto:${site.email}?subject=Consulting%20inquiry`} class="text-accent hover:underline">
+        Email me
+      </a> and describe the problem - if it is not a fit, I will say so and point you elsewhere.
+    </p>
+  </section>
+
+  <CTASection
+    title="Not sure which one you need?"
+    body="Describe where your project is stuck in two sentences. I will tell you which engagement fits - or whether you need one at all."
+  />
+</BaseLayout>

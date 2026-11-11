@@ -12,6 +12,9 @@ export const site = {
   },
   nav: [
     { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services/' },
+    { label: 'Case Studies', href: '/case-studies/' },
+    { label: 'Writing', href: '/writing/' },
     { label: 'About', href: '/about/' },
     { label: 'Contact', href: '/contact/' },
   ],

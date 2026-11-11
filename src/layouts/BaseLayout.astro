@@ -9,9 +9,10 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, noindex } = Astro.props;
+const { title, description, noindex, jsonLd } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,7 +20,7 @@ const { title, description, noindex } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <SEO title={title} description={description} noindex={noindex} />
+    <SEO title={title} description={description} noindex={noindex} jsonLd={jsonLd} />
   </head>
   <body class="flex min-h-screen flex-col">
     <a
