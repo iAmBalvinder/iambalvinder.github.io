@@ -1,14 +1,25 @@
-# Local Site Directories
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+# build output
+dist/
 
-# To generate Gemfile.lock -> use: $ bundle install
-# If unknown encoding name CP720 Error occured -> use: $ chcp.com 1252
-Gemfile.lock
+# generated types
+.astro/
 
-# Photoshop Documents
-Preview.psd
-*.xml
-*.iml
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# jetbrains / vscode local
+.idea/
+.vscode/
