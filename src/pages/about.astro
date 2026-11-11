@@ -33,60 +33,63 @@ const principles = [
 ];
 ---
 
-<BaseLayout title="About" description="From a decade of project management and data work to LLM and AI engineering. The story, the principles, and the stack.">
-  <section class="mx-auto max-w-3xl px-6 pt-24 pb-16 sm:pt-32">
-    <p class="text-sm font-medium tracking-widest text-accent uppercase">About</p>
-    <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+<BaseLayout
+  title="About"
+  description="From a decade of project management and data work to LLM and AI engineering. The story, the principles, and the stack."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-24 pb-14 sm:pt-32">
+    <p class="font-mono text-xs uppercase tracking-widest text-accent">About</p>
+    <h1 class="mt-4 font-serif text-4xl font-semibold leading-tight tracking-tight text-fg sm:text-5xl">
       The data engineer who ships AI systems
     </h1>
-    <div class="mt-8 space-y-6 text-lg leading-relaxed text-muted">
+    <div class="mt-10 space-y-6 text-lg leading-relaxed text-muted">
       <p>
-        Hi, I am {site.name}. I started out far from AI: an Industrial Engineering degree
-        and an MBA in Operations Management from Thapar University (2007-2012), followed by
-        years of project and portfolio management across multiple countries and geographies.
+        Hi, I am {site.name}. I started out far from AI: an Industrial Engineering
+        degree and an MBA in Operations Management from Thapar University
+        (2007-2012), followed by years of project and portfolio management across
+        multiple countries and geographies.
       </p>
       <p>
-        In 2017 I found my real calling in data and analytics, and have been building with
-        data ever since - pipelines, analytics platforms, and reporting for organizations
-        including <span class="text-fg">Scarsin Corporation</span> in the Toronto region.
+        In 2017 I found my real calling in data and analytics, and have been
+        building with data ever since - pipelines, analytics platforms, and
+        reporting for organizations including
+        <span class="text-fg">Scarsin Corporation</span> in the Toronto region.
       </p>
       <p>
-        Now I am focused on the next layer up: LLM and AI engineering. The shift feels
-        natural rather than dramatic, because the hard part of production AI is not the
-        model. It is the data quality, the pipelines, the evaluation discipline - the
-        problems I have spent years learning to solve.
+        Now I am focused on the next layer up: LLM and AI engineering. The shift
+        feels natural rather than dramatic, because the hard part of production AI
+        is not the model. It is the data quality, the pipelines, the evaluation
+        discipline - the problems I have spent years learning to solve.
       </p>
       <p>
-        When I am not working, I am out with a camera, biking, or doing the occasional
-        real estate deal.
+        When I am not working, I am out with a camera, biking, or doing the
+        occasional real estate deal.
       </p>
     </div>
   </section>
 
-  <section class="mx-auto max-w-3xl px-6 pb-16">
-    <h2 class="text-sm font-medium tracking-widest text-accent uppercase">Stack I work with</h2>
-    <ul class="mt-4 flex flex-wrap gap-2">
-      {
-        stack.map((item) => (
-          <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-muted">
-            {item}
-          </li>
-        ))
-      }
+  <section class="mx-auto max-w-3xl px-6 pb-14">
+    <p class="font-mono text-xs uppercase tracking-widest text-muted">Stack I work with</p>
+    <ul class="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-mono text-xs text-muted">
+      {stack.map((item) => <li>{`[ ${item} ]`}</li>)}
     </ul>
   </section>
 
-  <section class="border-t border-line/70" aria-labelledby="principles">
+  <section class="border-t border-line" aria-labelledby="principles">
     <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-      <h2 id="principles" class="text-3xl font-semibold tracking-tight sm:text-4xl">
-        How I work
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">How I work</p>
+      <h2 id="principles" class="mt-4 font-serif text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
+        Four rules I hold myself to
       </h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-10 border-t border-line">
         {
-          principles.map((principle) => (
-            <div class="rounded-2xl border border-line bg-surface p-6">
-              <h3 class="font-semibold text-fg">{principle.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">{principle.body}</p>
+          principles.map((principle, index) => (
+            <div class="grid gap-2 border-b border-line py-8 transition-colors hover:bg-surface sm:grid-cols-[5rem_1fr] sm:gap-8">
+              <span class="pt-1 font-mono text-xs text-muted">{`0${index + 1}`}</span>
+              <div>
+                <h3 class="font-serif text-xl font-semibold tracking-tight text-fg">{principle.title}</h3>
+                <p class="mt-2 max-w-2xl leading-relaxed text-muted">{principle.body}</p>
+              </div>
             </div>
           ))
         }

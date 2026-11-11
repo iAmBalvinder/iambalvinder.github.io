@@ -40,42 +40,37 @@ const jsonLd = {
   backLabel="All case studies"
   jsonLd={jsonLd}
 >
-  <div
-    class="not-prose mb-10 grid gap-4 rounded-2xl border border-line bg-surface p-6 sm:grid-cols-3"
-  >
+  <div class="not-prose mt-10 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-b border-line py-6 sm:grid-cols-3">
     <div>
-      <p class="text-xs font-medium tracking-widest text-muted uppercase">Client</p>
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">Client</p>
       <p class="mt-1 text-sm text-fg">{study.data.client}</p>
     </div>
     <div>
-      <p class="text-xs font-medium tracking-widest text-muted uppercase">Industry</p>
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">Industry</p>
       <p class="mt-1 text-sm text-fg">{study.data.industry}</p>
     </div>
     <div>
-      <p class="text-xs font-medium tracking-widest text-muted uppercase">Timeframe</p>
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">Timeframe</p>
       <p class="mt-1 text-sm text-fg">{study.data.timeframe}</p>
     </div>
   </div>
 
   {
     study.data.outcomes.length > 0 && (
-      <section
-        class="not-prose mb-10 rounded-2xl border border-accent/30 bg-accent/5 p-6 sm:p-8"
-        aria-labelledby="outcomes"
-      >
-        <h2 id="outcomes" class="text-sm font-medium tracking-widest text-accent uppercase">
+      <section class="not-prose mt-10 border-t border-line pt-8" aria-labelledby="outcomes">
+        <h2 id="outcomes" class="font-mono text-xs uppercase tracking-widest text-muted">
           Outcomes
         </h2>
-        <dl class="mt-4 space-y-4">
+        <dl class="mt-6">
           {study.data.outcomes.map((outcome) => (
-            <div class="rounded-xl border border-line bg-surface p-4">
-              <dt class="text-sm font-semibold text-fg">{outcome.metric}</dt>
+            <div class="border-b border-line py-5">
+              <dt class="font-serif text-lg font-semibold tracking-tight text-fg">{outcome.metric}</dt>
               <dd class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                 {outcome.before && (
-                  <span class="text-muted line-through decoration-muted/50">{outcome.before}</span>
+                  <span class="text-muted line-through decoration-muted/60">{outcome.before}</span>
                 )}
                 {outcome.before && <span class="text-accent" aria-hidden="true">&rarr;</span>}
-                <span class="text-accent-strong font-medium">{outcome.after}</span>
+                <span class="font-medium text-accent">{outcome.after}</span>
               </dd>
             </div>
           ))}
@@ -88,15 +83,13 @@ const jsonLd = {
 
   {
     study.data.stack.length > 0 && (
-      <section class="not-prose mt-12 border-t border-line/70 pt-8" aria-labelledby="stack">
-        <h2 id="stack" class="text-xs font-medium tracking-widest text-muted uppercase">
+      <section class="not-prose mt-12 border-t border-line pt-8" aria-labelledby="stack">
+        <h2 id="stack" class="font-mono text-xs uppercase tracking-widest text-muted">
           Stack
         </h2>
-        <ul class="mt-3 flex flex-wrap gap-2">
+        <ul class="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-mono text-xs text-muted">
           {study.data.stack.map((item) => (
-            <li class="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-              {item}
-            </li>
+            <li>{`[ ${item} ]`}</li>
           ))}
         </ul>
       </section>

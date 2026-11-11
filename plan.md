@@ -183,15 +183,21 @@ Schemas enforced with zod in the content config, so bad frontmatter fails the bu
 
 ## 6. Design system (Tailwind 4)
 
-- Tailwind v4 entry in `src/styles/global.css` with `@theme` design tokens
-  (colors, type scale, spacing) - no config file needed.
-- Component layer: a small set of Astro components (Header, Footer, Card, Tag,
-  CTASection, Prose). No React, no islands in v1 - the site ships zero JS.
-- Dark mode via `prefers-color-scheme` (media strategy; no toggle in v1).
-- Typography: self-hosted via Fontsource (one variable font + one mono) to avoid
-  render-blocking third-party requests.
+- **Direction: light editorial.** Deliberately avoids the generic "dark navy +
+  teal glow + rounded cards" AI-startup template. Warm paper background,
+  ink-black serif headlines, monospace meta labels, hairline rules instead of
+  cards, deep pine-green accent used sparingly.
+- Type: Fraunces Variable (serif display/headlines), Inter Variable (body/UI),
+  system mono for labels, dates, tags, and index numbers.
+- Layout language: numbered ruled rows ("01 / ...") instead of card grids;
+  bracketed mono tags (`[ RAG pipelines ]`); square corners; flat color only -
+  no gradients, glows, or glass.
+- Dark mode: automatic warm-charcoal inversion via `prefers-color-scheme`
+  (runtime CSS variables + `@theme inline`); no toggle in v1.
 - Accessibility baseline: WCAG AA contrast, visible focus states, semantic
   landmarks, `prefers-reduced-motion` respected.
+- Brand assets: `scripts/generate_og.py` regenerates the OG image, favicon PNGs,
+  and apple-touch-icon from the palette; `public/favicon.svg` is hand-maintained.
 
 ## 7. SEO and trust requirements
 

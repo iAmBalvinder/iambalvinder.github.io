@@ -37,26 +37,30 @@ const jsonLd = {
   <article class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
     <a
       href="/services/"
-      class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
+      class="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-fg"
     >
       <span aria-hidden="true">&larr;</span> All services
     </a>
-    <header class="mt-8">
-      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{service.data.title}</h1>
-      <p class="mt-4 text-lg leading-relaxed text-muted">{service.data.description}</p>
-      <div class="mt-6 flex flex-wrap gap-2">
+    <header class="mt-10">
+      <h1 class="font-serif text-4xl font-semibold leading-tight tracking-tight text-fg sm:text-5xl">
+        {service.data.title}
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-muted">{service.data.description}</p>
+      <div class="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-line pt-6 sm:grid-cols-2">
         {
           service.data.timeline && (
-            <span class="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-              Timeline: {service.data.timeline}
-            </span>
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-muted">Timeline</p>
+              <p class="mt-1 text-sm text-fg">{service.data.timeline}</p>
+            </div>
           )
         }
         {
           service.data.format && (
-            <span class="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-              Format: {service.data.format}
-            </span>
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-muted">Format</p>
+              <p class="mt-1 text-sm text-fg">{service.data.format}</p>
+            </div>
           )
         }
       </div>
@@ -64,15 +68,15 @@ const jsonLd = {
 
     {
       service.data.deliverables.length > 0 && (
-        <section class="mt-10 rounded-2xl border border-line bg-surface p-6 sm:p-8" aria-labelledby="deliverables">
-          <h2 id="deliverables" class="text-sm font-medium tracking-widest text-accent uppercase">
+        <section class="mt-14 border-t border-line pt-8" aria-labelledby="deliverables">
+          <h2 id="deliverables" class="font-mono text-xs uppercase tracking-widest text-muted">
             What you get
           </h2>
-          <ul class="mt-4 space-y-3">
+          <ul class="mt-6 space-y-4">
             {service.data.deliverables.map((item) => (
-              <li class="flex gap-3 text-muted">
-                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                <span>{item}</span>
+              <li class="flex gap-4">
+                <span class="mt-2.5 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                <span class="leading-relaxed text-muted">{item}</span>
               </li>
             ))}
           </ul>
@@ -81,7 +85,7 @@ const jsonLd = {
     }
 
     <div
-      class="prose prose-invert mt-10 max-w-none
+      class="prose prose-headings:font-serif dark:prose-invert mt-14 max-w-none
         prose-headings:font-semibold prose-headings:tracking-tight
         prose-a:text-accent prose-a:no-underline prose-a:hover:underline
         prose-strong:text-fg
@@ -91,9 +95,9 @@ const jsonLd = {
       <Content />
     </div>
   </article>
-
-  <CTASection
-    title={`Interested in ${service.data.title.toLowerCase()}?`}
-    body="Send a two-sentence description of your project. If this engagement is the right fit, the first call is free."
-  />
 </BaseLayout>
+
+<CTASection
+  title={`Interested in ${service.data.title.toLowerCase()}?`}
+  body="Send a two-sentence description of your project. If this engagement is the right fit, the first call is free."
+/>

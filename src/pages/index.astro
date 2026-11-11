@@ -21,20 +21,24 @@ const audiences = [
 
 const offers = [
   {
-    title: 'LLM app architecture',
+    title: 'LLM application architecture',
     body: 'System design reviews for LLM-powered products: retrieval design, model selection, cost and latency budgets, failure modes.',
+    href: '/services/llm-app-architecture/',
   },
   {
-    title: 'RAG and eval pipelines',
+    title: 'RAG and evaluation pipelines',
     body: 'Production-grade retrieval pipelines with automated evaluation: retrieval quality metrics, regression suites, and CI gates.',
+    href: '/services/rag-eval-pipelines/',
   },
   {
     title: 'Data platform to AI enablement',
     body: 'Extending existing data platforms for AI workloads: quality gates, semantic layers, and pipelines that feed LLM systems reliably.',
+    href: '/services/data-platform-ai-enablement/',
   },
   {
     title: 'Strategy and roadmaps',
     body: 'Focused engagements to define what to build first, what to measure, and what to safely defer.',
+    href: '/services/ai-strategy-roadmaps/',
   },
 ];
 
@@ -46,65 +50,67 @@ const focusAreas = [
   'Vector databases',
   'Streaming data platforms',
 ];
+
+const latestPosts = (await getCollection('writing'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 2);
+
+const dateFmt = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' });
 ---
 
-<BaseLayout
-  description={site.description}
->
-  <section class="relative overflow-hidden">
-    <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(45,212,191,0.12),transparent_60%)]"
-      aria-hidden="true"
-    ></div>
-    <div class="mx-auto max-w-5xl px-6 pt-24 pb-20 sm:pt-32">
-      <p class="text-sm font-medium tracking-widest text-accent uppercase">Data engineering to LLM &amp; AI engineering</p>
-      <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">
-        Data foundations.
-        <span class="text-accent-strong">Production AI.</span>
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-muted sm:text-xl">
-        I help teams move from data platforms to production LLM and AI systems -
-        reliably, securely, and measurably. Most AI projects fail on the data layer,
-        not the model layer. That is the part I know best.
-      </p>
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a
-          href={`mailto:${site.email}?subject=Consulting%20inquiry`}
-          class="inline-flex items-center rounded-xl bg-accent px-6 py-3 font-semibold text-bg transition-colors hover:bg-accent-strong"
-        >
-          Book a call
-        </a>
-        <a
-          href="/about/"
-          class="inline-flex items-center rounded-xl border border-line px-6 py-3 font-semibold text-fg transition-colors hover:border-accent/50"
-        >
-          About me
-        </a>
-      </div>
-      <ul class="mt-14 flex flex-wrap gap-2" aria-label="Focus areas">
-        {
-          focusAreas.map((area) => (
-            <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-muted">
-              {area}
-            </li>
-          ))
-        }
-      </ul>
+<BaseLayout description={site.description}>
+  <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
+    <p class="font-mono text-xs uppercase tracking-widest text-accent">
+      Independent consultant - data engineering to LLM &amp; AI engineering
+    </p>
+    <h1 class="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-7xl">
+      Data foundations.<br />
+      <span class="text-accent">Production AI.</span>
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+      I help teams move from data platforms to production LLM and AI systems -
+      reliably, securely, and measurably. Most AI projects fail on the data layer,
+      not the model layer. That is the part I know best.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={`mailto:${site.email}?subject=Consulting%20inquiry`}
+        class="inline-flex items-center rounded-[3px] bg-fg px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
+      >
+        Book a call
+      </a>
+      <a
+        href="/about/"
+        class="inline-flex items-center rounded-[3px] border border-fg/25 px-6 py-3 text-sm font-medium text-fg transition-colors hover:border-fg"
+      >
+        About me
+      </a>
     </div>
+    <ul class="mt-14 flex flex-wrap gap-x-3 gap-y-2 font-mono text-xs text-muted" aria-label="Focus areas">
+      {
+        focusAreas.map((area) => (
+          <li>{`[ ${area} ]`}</li>
+        ))
+      }
+    </ul>
   </section>
 
-  <section class="border-t border-line/70" aria-labelledby="who-i-help">
+  <section class="border-t border-line" aria-labelledby="who-i-help">
     <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-      <p class="text-sm font-medium tracking-widest text-accent uppercase">Who I help</p>
-      <h2 id="who-i-help" class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">01 / Who I help</p>
+      <h2 id="who-i-help" class="mt-4 max-w-2xl font-serif text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
         Built for teams between demo and production
       </h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      <div class="mt-10 border-t border-line">
         {
-          audiences.map((audience) => (
-            <div class="rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
-              <h3 class="font-semibold text-fg">{audience.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">{audience.body}</p>
+          audiences.map((audience, index) => (
+            <div class="grid gap-2 border-b border-line py-8 transition-colors hover:bg-surface sm:grid-cols-[5rem_1fr] sm:gap-8">
+              <span class="pt-1 font-mono text-xs text-muted">{`0${index + 1}`}</span>
+              <div>
+                <h3 class="font-serif text-xl font-semibold tracking-tight text-fg">{audience.title}</h3>
+                <p class="mt-2 max-w-2xl leading-relaxed text-muted">{audience.body}</p>
+              </div>
             </div>
           ))
         }
@@ -112,61 +118,73 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="border-t border-line/70" aria-labelledby="core-offers">
+  <section class="border-t border-line" aria-labelledby="core-offers">
     <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-      <p class="text-sm font-medium tracking-widest text-accent uppercase">Core offers</p>
-      <h2 id="core-offers" class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">02 / Core offers</p>
+      <h2 id="core-offers" class="mt-4 max-w-2xl font-serif text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
         Engagements that fit real teams
       </h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-10 border-t border-line">
         {
-          offers.map((offer) => (
-            <div class="rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
-              <h3 class="font-semibold text-fg">{offer.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">{offer.body}</p>
-            </div>
+          offers.map((offer, index) => (
+            <a
+              href={offer.href}
+              class="group grid gap-2 border-b border-line py-8 transition-colors hover:bg-surface sm:grid-cols-[5rem_1fr_auto] sm:gap-8"
+            >
+              <span class="pt-1 font-mono text-xs text-muted">{`0${index + 1}`}</span>
+              <div>
+                <h3 class="font-serif text-xl font-semibold tracking-tight text-fg">{offer.title}</h3>
+                <p class="mt-2 max-w-2xl leading-relaxed text-muted">{offer.body}</p>
+              </div>
+              <span
+                class="hidden pt-1 font-mono text-sm text-muted transition-colors group-hover:text-accent sm:block"
+                aria-hidden="true"
+              >
+                &rarr;
+              </span>
+            </a>
           ))
         }
       </div>
       <p class="mt-8 text-sm text-muted">
-        Full details on the
-        <a href="/services/" class="text-accent hover:underline">services page</a>.
+        Full details on the <a href="/services/" class="text-accent hover:underline">services page</a>.
       </p>
     </div>
   </section>
 
-  <section class="border-t border-line/70" aria-labelledby="latest-writing">
+  <section class="border-t border-line" aria-labelledby="latest-writing">
     <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p class="text-sm font-medium tracking-widest text-accent uppercase">Latest writing</p>
-          <h2 id="latest-writing" class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <p class="font-mono text-xs uppercase tracking-widest text-muted">03 / Latest writing</p>
+          <h2 id="latest-writing" class="mt-4 font-serif text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
             How I think about this work
           </h2>
         </div>
-        <a href="/writing/" class="text-sm font-medium text-accent hover:underline">All writing &rarr;</a>
+        <a href="/writing/" class="font-mono text-xs uppercase tracking-widest text-accent hover:underline">
+          All writing &rarr;
+        </a>
       </div>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-10 border-t border-line">
         {
-          (await getCollection('writing'))
-            .filter((post) => !post.data.draft)
-            .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-            .slice(0, 2)
-            .map((post) => (
-              <a
-                href={`/writing/${post.id}/`}
-                class="group rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40"
+          latestPosts.map((post) => (
+            <a
+              href={`/writing/${post.id}/`}
+              class="group grid gap-2 border-b border-line py-8 transition-colors hover:bg-surface sm:grid-cols-[9rem_1fr_auto] sm:gap-8"
+            >
+              <span class="pt-1 font-mono text-xs text-muted">{dateFmt.format(post.data.publishDate)}</span>
+              <div>
+                <h3 class="font-serif text-xl font-semibold tracking-tight text-fg">{post.data.title}</h3>
+                <p class="mt-2 max-w-2xl leading-relaxed text-muted">{post.data.description}</p>
+              </div>
+              <span
+                class="hidden pt-1 font-mono text-sm text-muted transition-colors group-hover:text-accent sm:block"
+                aria-hidden="true"
               >
-                <p class="text-xs text-muted">
-                  {new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(post.data.publishDate)}
-                  {post.data.tags.length > 0 && ` - ${post.data.tags[0]}`}
-                </p>
-                <h3 class="mt-2 font-semibold text-fg group-hover:text-accent-strong">
-                  {post.data.title}
-                </h3>
-                <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
-              </a>
-            ))
+                &rarr;
+              </span>
+            </a>
+          ))
         }
       </div>
     </div>
