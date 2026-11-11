@@ -11,8 +11,9 @@ Facts confirmed by inspecting the repo before the reset:
   (`_config.yml`, `Gemfile`, `_layouts/`, `_includes/`, `_sass/`, `_data/`, collections).
 - Hosting: GitHub Pages user-site repo (`iAmBalvinder/iambalvinder.github.io`)
   with custom domain via `CNAME` (`balvindersingh.com`, `www.balvindersingh.com`).
-- Content reality: `_posts/` and `_projects/` were **empty**; only `pages/about.md`
-  had real prose. Nothing content-wise needed salvaging.
+- Content reality: `_posts/` and `_projects/` contained only dot-prefixed (hidden)
+  portfolYOU sample files (e.g. `.2015-09-25-how-to-undo-your-git-failure.md`);
+  only `pages/about.md` had real prose. Nothing content-wise needed salvaging.
 - CI/CD: no `.github/workflows/` existed. The site relied on GitHub Pages' default
   Jekyll build.
 - Only real assets: `assets/resume.pdf`, `images/01.jpg` (headshot), `assets/favicon.ico`.
