@@ -29,7 +29,7 @@ Facts confirmed by inspecting the repo before the reset:
 
 ## 1. Finalized tech stack
 
-**Astro 6 + TypeScript (strict) + Tailwind CSS 4 + pnpm, deployed to GitHub Pages via GitHub Actions.**
+**Astro (v7 current) + TypeScript (strict) + Tailwind CSS 4 + pnpm, deployed to GitHub Pages via GitHub Actions.**
 
 Verified against the 2026 ecosystem:
 
@@ -208,15 +208,15 @@ Schemas enforced with zod in the content config, so bad frontmatter fails the bu
 ### Phase 0 - Reset (done)
 Archive tag pushed, Jekyll wiped, assets preserved, this plan written.
 
-### Phase 1 - Scaffold and ship a v1
-- [ ] `pnpm` project: Astro 6, TypeScript strict, `@tailwindcss/vite`, `@astrojs/sitemap`, `@astrojs/rss`
-- [ ] `astro.config.mjs` with `site`, integrations, trailingSlash defaults
-- [ ] Base layout, Header, Footer, design tokens
-- [ ] Home, About, Contact (stub content acceptable), 404
-- [ ] `deploy.yml` checked in; flip Pages source to "GitHub Actions"
+### Phase 1 - Scaffold and ship a v1 (done, Nov 2026)
+- [x] `pnpm` project: Astro 7.4, TypeScript strict (`astro check` pinned to TS 6 while it lacks TS 7 support), `@tailwindcss/vite`, `@astrojs/sitemap`, `@astrojs/rss`
+- [x] `astro.config.mjs` with `site`, integrations, trailingSlash defaults
+- [x] Base layout, Header, Footer, design tokens (dark-only palette in v1)
+- [x] Home, About, Contact, 404
+- [x] `deploy.yml` checked in; flip Pages source to "GitHub Actions" (repo owner step)
 - [ ] First successful production deploy on https://balvindersingh.com
 
-Exit criteria: site live, builds green, zero JS shipped.
+Exit criteria met: site builds green, zero JS shipped, RSS + sitemap generated.
 
 ### Phase 2 - Content engine
 - [ ] Content collections + zod schemas for services, case-studies, writing
