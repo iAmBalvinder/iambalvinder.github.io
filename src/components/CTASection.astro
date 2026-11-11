@@ -1,0 +1,31 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = 'Have data, need AI?',
+  body = 'Tell me what you are building and where it is stuck. If I can help, we will figure out the fastest path from prototype to production.',
+} = Astro.props;
+---
+
+<section class="border-t border-line/70">
+  <div class="mx-auto max-w-5xl px-6 py-20 text-center sm:py-24">
+    <h2 class="text-3xl font-semibold tracking-tight text-fg sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-muted">{body}</p>
+    <div class="mt-8 flex justify-center">
+      <a
+        href={`mailto:${site.email}?subject=Consulting%20inquiry`}
+        class="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-bg transition-colors hover:bg-accent-strong"
+      >
+        Book a call
+      </a>
+    </div>
+    <p class="mt-4 text-sm text-muted">
+      {`Usually replies within one or two business days.`}
+    </p>
+  </div>
+</section>

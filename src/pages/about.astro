@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import { site } from '../data/site';
+
+const stack = [
+  'SQL',
+  'Python',
+  'Power BI',
+  'Tableau',
+  'SSAS / MDX',
+  'Statistics',
+  'AI/ML fundamentals',
+];
+
+const principles = [
+  {
+    title: 'Measure before you build',
+    body: 'Every AI system needs a number that tells you whether it is working. Define it before writing a line of code.',
+  },
+  {
+    title: 'Data quality beats model choice',
+    body: 'Teams reach for a bigger model when the real problem is a messy retrieval corpus. Fix the data layer first.',
+  },
+  {
+    title: 'Boring where possible',
+    body: 'Managed services and proven patterns over novel architecture. Save the experimentation for where it pays.',
+  },
+  {
+    title: 'Evals, not vibes',
+    body: 'Demo success means nothing. Automated evaluation suites that catch regressions are what make LLM features shippable.',
+  },
+];
+---
+
+<BaseLayout title="About" description="From a decade of project management and data work to LLM and AI engineering. The story, the principles, and the stack.">
+  <section class="mx-auto max-w-3xl px-6 pt-24 pb-16 sm:pt-32">
+    <p class="text-sm font-medium tracking-widest text-accent uppercase">About</p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+      The data engineer who ships AI systems
+    </h1>
+    <div class="mt-8 space-y-6 text-lg leading-relaxed text-muted">
+      <p>
+        Hi, I am {site.name}. I started out far from AI: an Industrial Engineering degree
+        and an MBA in Operations Management from Thapar University (2007-2012), followed by
+        years of project and portfolio management across multiple countries and geographies.
+      </p>
+      <p>
+        In 2017 I found my real calling in data and analytics, and have been building with
+        data ever since - pipelines, analytics platforms, and reporting for organizations
+        including <span class="text-fg">Scarsin Corporation</span> in the Toronto region.
+      </p>
+      <p>
+        Now I am focused on the next layer up: LLM and AI engineering. The shift feels
+        natural rather than dramatic, because the hard part of production AI is not the
+        model. It is the data quality, the pipelines, the evaluation discipline - the
+        problems I have spent years learning to solve.
+      </p>
+      <p>
+        When I am not working, I am out with a camera, biking, or doing the occasional
+        real estate deal.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 pb-16">
+    <h2 class="text-sm font-medium tracking-widest text-accent uppercase">Stack I work with</h2>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {
+        stack.map((item) => (
+          <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-muted">
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="border-t border-line/70" aria-labelledby="principles">
+    <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+      <h2 id="principles" class="text-3xl font-semibold tracking-tight sm:text-4xl">
+        How I work
+      </h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {
+          principles.map((principle) => (
+            <div class="rounded-2xl border border-line bg-surface p-6">
+              <h3 class="font-semibold text-fg">{principle.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{principle.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Working on something similar?"
+    body="Whether it is a production LLM feature or a data platform question, I am happy to talk it through."
+  />
+</BaseLayout>

@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+import { site } from '../data/site';
+
+const audiences = [
+  {
+    title: 'Engineering teams shipping their first LLM feature',
+    body: 'You have a working demo. You need retrieval that does not hallucinate, evals that catch regressions, and an architecture your team can own.',
+  },
+  {
+    title: 'Data teams extending their platform into the AI era',
+    body: 'Your pipelines, warehouse, and governance are solid. You want to expose them to LLM workloads without rebuilding everything from scratch.',
+  },
+  {
+    title: 'Founders who need a data-to-AI roadmap',
+    body: 'You know AI is table stakes for your product. You need a realistic architecture and sequencing plan, not a slide deck.',
+  },
+];
+
+const offers = [
+  {
+    title: 'LLM app architecture',
+    body: 'System design reviews for LLM-powered products: retrieval design, model selection, cost and latency budgets, failure modes.',
+  },
+  {
+    title: 'RAG and eval pipelines',
+    body: 'Production-grade retrieval pipelines with automated evaluation: retrieval quality metrics, regression suites, and CI gates.',
+  },
+  {
+    title: 'Data platform to AI enablement',
+    body: 'Extending existing data platforms for AI workloads: quality gates, semantic layers, and pipelines that feed LLM systems reliably.',
+  },
+  {
+    title: 'Strategy and roadmaps',
+    body: 'Focused engagements to define what to build first, what to measure, and what to safely defer.',
+  },
+];
+
+const focusAreas = [
+  'RAG pipelines',
+  'Evals and observability',
+  'Data quality for AI',
+  'LLMOps',
+  'Vector databases',
+  'Streaming data platforms',
+];
+---
+
+<BaseLayout
+  description={site.description}
+>
+  <section class="relative overflow-hidden">
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(45,212,191,0.12),transparent_60%)]"
+      aria-hidden="true"
+    ></div>
+    <div class="mx-auto max-w-5xl px-6 pt-24 pb-20 sm:pt-32">
+      <p class="text-sm font-medium tracking-widest text-accent uppercase">Data engineering to LLM &amp; AI engineering</p>
+      <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">
+        Data foundations.
+        <span class="text-accent-strong">Production AI.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted sm:text-xl">
+        I help teams move from data platforms to production LLM and AI systems -
+        reliably, securely, and measurably. Most AI projects fail on the data layer,
+        not the model layer. That is the part I know best.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href={`mailto:${site.email}?subject=Consulting%20inquiry`}
+          class="inline-flex items-center rounded-xl bg-accent px-6 py-3 font-semibold text-bg transition-colors hover:bg-accent-strong"
+        >
+          Book a call
+        </a>
+        <a
+          href="/about/"
+          class="inline-flex items-center rounded-xl border border-line px-6 py-3 font-semibold text-fg transition-colors hover:border-accent/50"
+        >
+          About me
+        </a>
+      </div>
+      <ul class="mt-14 flex flex-wrap gap-2" aria-label="Focus areas">
+        {
+          focusAreas.map((area) => (
+            <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-muted">
+              {area}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="border-t border-line/70" aria-labelledby="who-i-help">
+    <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+      <p class="text-sm font-medium tracking-widest text-accent uppercase">Who I help</p>
+      <h2 id="who-i-help" class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        Built for teams between demo and production
+      </h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {
+          audiences.map((audience) => (
+            <div class="rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
+              <h3 class="font-semibold text-fg">{audience.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{audience.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-line/70" aria-labelledby="core-offers">
+    <div class="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+      <p class="text-sm font-medium tracking-widest text-accent uppercase">Core offers</p>
+      <h2 id="core-offers" class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        Engagements that fit real teams
+      </h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {
+          offers.map((offer) => (
+            <div class="rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
+              <h3 class="font-semibold text-fg">{offer.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{offer.body}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-8 text-sm text-muted">
+        Full service descriptions are coming soon. Email me and I will send them directly.
+      </p>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
